@@ -1,0 +1,6 @@
+out
+.vscode-test
+.metals
+.direnv
+node_modules
+.envrc
