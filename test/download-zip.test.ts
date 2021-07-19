@@ -29,14 +29,14 @@ describe('Given frege server github release url', () => {
 		await downloadAndExtractTarFromUrl(url, downloadDir);
 		assert.ok(existsSync(path.join(downloadDir, getFregeStartScriptPath(fregeServerName, version))));
 		removeDirSync(downloadDir);
-	});
+	}).timeout(10000);
 });
 
 describe('Given frege server name and the frege version', () => {
 	it('Then it can create the path to the frege start script dynamically', () => {
 		const fregeServerName = 'frege-lsp-server';
 		const version = '1.0.0-alpha';
-		const expectedPath = 'frege-lsp-server-1.0.0-alpha/bin/frege-lsp-server';
+		const expectedPath = path.normalize('frege-lsp-server-1.0.0-alpha/bin/frege-lsp-server');
 		assert.strictEqual((getFregeStartScriptPath(fregeServerName, version)), expectedPath);
 	});
 	it('Then it can create the github release url to the frege tar archive dynamically', () => {
