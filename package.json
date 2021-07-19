@@ -50,7 +50,7 @@
 		"compile": "tsc -b",
 		"watch": "tsc -b -w",
 		"test": " npm run clean && npm run compile && mocha -r ts-node/register test/**/*.test.ts",
-		"e2eTest": "npm run clean && npm run compile && ./e2e.sh"
+		"e2eTest": "npm run clean && npm run compile && sh ./e2e.sh"
 	},
 	"devDependencies": {
 		"@types/mocha": "^8.2.3",
