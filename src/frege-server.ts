@@ -3,7 +3,12 @@ import * as https from 'https';
 import { extract, Extract } from 'tar-fs';
 
 export function getFregeStartScriptPath(fregeServerName: string, version: string): string {
-	return path.join(`${fregeServerName}-${version}`, 'bin', fregeServerName);
+	const fregeStartScriptPath = path.join(`${fregeServerName}-${version}`, 'bin', fregeServerName);
+	if (process.platform === 'win32') {
+		return `${fregeStartScriptPath}.bat`;
+	} else {
+		return fregeStartScriptPath;
+	}
 }
 
 export function getFregeTarGithubUrl(fregeServername: string, version: string): string {
