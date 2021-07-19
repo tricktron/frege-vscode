@@ -4,3 +4,5 @@ out
 .direnv
 node_modules
 .envrc
+.frege
+.DS_Store

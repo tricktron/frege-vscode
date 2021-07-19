@@ -7,6 +7,6 @@
 		"rootDir": ".",
 		"sourceMap": true
 	},
-	"include": ["src", "test"],
+	"include": ["src", "e2eTest", "test/download-zip.test.ts"],
 	"exclude": ["node_modules", ".vscode-test"]
 }

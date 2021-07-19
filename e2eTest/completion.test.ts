@@ -13,9 +13,9 @@ suite('Should do completion', () => {
 	test('Completes JS/TS in txt file', async () => {
 		await testCompletion(docUri, new vscode.Position(0, 0), {
 			items: [
+				{ label: 'Frege rocks', kind: vscode.CompletionItemKind.Text },
 				{ label: 'JavaScript', kind: vscode.CompletionItemKind.Text },
-				{ label: 'TypeScript', kind: vscode.CompletionItemKind.Text },
-				{ label: 'Frege rocks', kind: vscode.CompletionItemKind.Text }
+				{ label: 'TypeScript', kind: vscode.CompletionItemKind.Text }
 			]
 		});
 	});

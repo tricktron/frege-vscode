@@ -1,5 +1,5 @@
 {
-  description = "java-language-server-dev-shell";
+  description = "frege-vscode-dev-shell";
   inputs.flake-utils.url = "github:numtide/flake-utils";
   inputs.nixpkgs.url = "github:NixOS/nixpkgs";
 
@@ -14,8 +14,6 @@
         devShell = pkgs.mkShell {
           buildInputs = with pkgs; [
             nodejs-14_x
-            gradle
-            adoptopenjdk-openj9-bin-11
           ];
         };
       });
