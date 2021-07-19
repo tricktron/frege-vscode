@@ -11,14 +11,6 @@ import { it } from 'mocha';
 import * as path from 'path';
 import { getFregeTarGithubUrl, downloadAndExtractTarFromUrl, getFregeStartScriptPath } from '../src/frege-server';
 
-function removeDirSync(pathToDir: string) {
-	if (process.platform === 'win32') {
-		execSync(`del /f /s ${pathToDir}`);
-	} else {
-		execSync(`rm -rf ${pathToDir}`);
-	}
-}
-
 describe('Given frege server github release url', () => {
 
 	it('Then it downloads and extracts the frege server tar', async () => {
@@ -28,7 +20,6 @@ describe('Given frege server github release url', () => {
 		const downloadDir = path.join(__dirname, '.frege');
 		await downloadAndExtractTarFromUrl(url, downloadDir);
 		assert.ok(existsSync(path.join(downloadDir, getFregeStartScriptPath(fregeServerName, version))));
-		removeDirSync(downloadDir);
 	}).timeout(10000);
 });
 
