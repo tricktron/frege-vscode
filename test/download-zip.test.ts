@@ -4,7 +4,7 @@
  * ------------------------------------------------------------------------------------------ */
 
 import * as assert from 'assert';
-import { existsSync } from 'fs';
+import { existsSync, rmdirSync } from 'fs';
 import 'mocha';
 import { it } from 'mocha';
 import * as path from 'path';
@@ -16,9 +16,10 @@ describe('Given frege server github release url', () => {
 		const fregeServerName = 'frege-lsp-server';
 		const version = '1.0.0-alpha';
 		const url = getFregeTarGithubUrl(fregeServerName, version);
-		const downloadDir = '/Users/tricktron/github/master/frege-vscode/.frege';
+		const downloadDir = path.join(__dirname, '.frege');
 		await downloadAndExtractTarFromUrl(url, downloadDir);
 		assert.ok(existsSync(path.join(downloadDir, getFregeStartScriptPath(fregeServerName, version))));
+		rmdirSync(downloadDir, { recursive: true });
 	});
 });
 
