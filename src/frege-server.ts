@@ -24,6 +24,7 @@ export function downloadAndExtractTarFromUrl(url: string, downloadDir: string): 
 					reject(new Error(e.message));
 				});
 				message.on('end', () => {
+					writeStream.end();
 					writeStream.on('error', e => reject(e));
 					writeStream.on('finish', () => resolve(writeStream));
 				});

@@ -4,11 +4,20 @@
  * ------------------------------------------------------------------------------------------ */
 
 import * as assert from 'assert';
-import { existsSync, rmdirSync } from 'fs';
+import { execSync } from 'child_process';
+import { existsSync } from 'fs';
 import 'mocha';
 import { it } from 'mocha';
 import * as path from 'path';
 import { getFregeTarGithubUrl, downloadAndExtractTarFromUrl, getFregeStartScriptPath } from '../src/frege-server';
+
+function removeDirSync(pathToDir: string) {
+	if (process.platform === 'win32') {
+		execSync(`del /f /s ${pathToDir}`);
+	} else {
+		execSync(`rm -rf ${pathToDir}`);
+	}
+}
 
 describe('Given frege server github release url', () => {
 
@@ -19,7 +28,7 @@ describe('Given frege server github release url', () => {
 		const downloadDir = path.join(__dirname, '.frege');
 		await downloadAndExtractTarFromUrl(url, downloadDir);
 		assert.ok(existsSync(path.join(downloadDir, getFregeStartScriptPath(fregeServerName, version))));
-		rmdirSync(downloadDir, { recursive: true });
+		removeDirSync(downloadDir);
 	});
 });
 
