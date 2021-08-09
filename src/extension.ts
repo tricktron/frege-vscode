@@ -31,7 +31,7 @@ export async function activate(context: ExtensionContext) {
 
 	let clientOptions: LanguageClientOptions = {
 		// Register the server for plain text documents
-		documentSelector: [{ scheme: 'file', language: 'plaintext' }],
+		documentSelector: [{ scheme: 'file', language: 'frege' }],
 		synchronize: {
 			fileEvents: workspace.createFileSystemWatcher('**/.clientrc')
 		}
