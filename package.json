@@ -3,7 +3,7 @@
 	"description": "VSCode lsp frege client",
 	"author": "Thibault Gagnaux",
 	"license": "MIT",
-	"version": "1.0.0-alpha",
+	"version": "1.1.0-alpha",
 	"publisher": "ch-fhnw-thga",
 	"repository": {
 		"type": "git",
@@ -16,10 +16,23 @@
 		"vscode-languageclient": "^7.0.0"
 	},
 	"activationEvents": [
-		"onLanguage:plaintext"
+		"onLanguage:frege",
+		"onCommand:frege-vscode.restartServer"
 	],
 	"main": "./out/src/extension",
 	"contributes": {
+		"languages": [
+			{
+				"id": "frege",
+				"extensions": [
+					".fr"
+				],
+				"aliases": [
+					"Frege",
+					"fr"
+				]
+			}
+		],
 		"configuration": {
 			"type": "object",
 			"title": "Example configuration",
