@@ -15,7 +15,8 @@
 			"name": "Launch Client",
 			"runtimeExecutable": "${execPath}",
 			"args": [
-				"--extensionDevelopmentPath=${workspaceRoot}"
+				"--extensionDevelopmentPath=${workspaceRoot}",
+				"--disable-extensions"
 			],
 			"env": {
 				"JAVA_OPTS": "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=localhost:6008,quiet=y",
