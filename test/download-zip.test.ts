@@ -4,7 +4,6 @@
  * ------------------------------------------------------------------------------------------ */
 
 import * as assert from 'assert';
-import { execSync } from 'child_process';
 import { existsSync } from 'fs';
 import 'mocha';
 import { it } from 'mocha';
