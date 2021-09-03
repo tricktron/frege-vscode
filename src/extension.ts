@@ -25,7 +25,7 @@ export async function activate(context: ExtensionContext) {
 	let fregeServerOptions: ServerOptions = {
 		run: { command: "sh", args: [ fregeServerStartScriptPath ] },
 		debug: {
-			command: "sh", args: [ fregeServerStartScriptPath ], options: { env: process.env }
+			command: "sh", args: [ fregeServerStartScriptPath ]
 		}
 	}
 

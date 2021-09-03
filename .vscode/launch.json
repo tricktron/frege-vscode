@@ -15,8 +15,23 @@
 			"name": "Launch Client",
 			"runtimeExecutable": "${execPath}",
 			"args": [
-				"--extensionDevelopmentPath=${workspaceRoot}",
-				"--disable-extensions"
+				"--extensionDevelopmentPath=${workspaceRoot}"
+			],
+			"outFiles": [
+				"${workspaceRoot}/out/**/*.js"
+			],
+			"preLaunchTask": {
+				"type": "npm",
+				"script": "watch"
+			}
+		},
+		{
+			"type": "extensionHost",
+			"request": "launch",
+			"name": "Debug Client",
+			"runtimeExecutable": "${execPath}",
+			"args": [
+				"--extensionDevelopmentPath=${workspaceRoot}"
 			],
 			"env": {
 				"JAVA_OPTS": "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=localhost:6008,quiet=y",
