@@ -14,9 +14,23 @@ This downloads the [frege lsp server](https://github.com/tricktron/frege-lsp-ser
 
 A second vscode instance, called `Extension development host is started`.
 
-Open any `.txt` file in the `extension development host` and type the letter `f`. You should get an autocomplete suggestion of `frege rocks`.
+Open any `.fr` file in the `extension development host` and try to code some correct Frege functions.
+
+## Features
+
+### Diagnostics
+If you save or open a frege file with errros then the compiler warnings or errors are displayed in the problem tab of the extension host.
+
+![diagnostics](.img/diagnostics.png)
+
+### Hover
+
+Whenever you hover over the first word of a line (which is usually a function), you will see its type signature in a popup.
+
+![hover](.img/frob-hover.png)
+
+
 
 ## How to Contribute
 - Run `npm test` to execute the [unit tests](test)
-- Close all vscode instances and run `npm run e2eTest` to run the [e2eTests](e2eTest)
 - Add more tests and features
