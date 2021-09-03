@@ -11,7 +11,7 @@ import { downloadAndExtractTarFromUrl, getFregeStartScriptPath, getFregeTarGithu
 
 let client: LanguageClient;
 const FREGE_SERVER_NAME = 'frege-lsp-server';
-const FREGE_SERVER_VERSION = '1.0.0-alpha'
+const FREGE_SERVER_VERSION = '2.1.8-alpha'
 const DEFAULT_FREGE_SERVER_DIR = '.frege'
 
 export async function activate(context: ExtensionContext) {
@@ -25,7 +25,7 @@ export async function activate(context: ExtensionContext) {
 	let fregeServerOptions: ServerOptions = {
 		run: { command: "sh", args: [ fregeServerStartScriptPath ] },
 		debug: {
-			command: "sh", args: [ fregeServerStartScriptPath ], options: { env: process.env }
+			command: "sh", args: [ fregeServerStartScriptPath ]
 		}
 	}
 

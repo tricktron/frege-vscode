@@ -3,7 +3,7 @@
 	"description": "VSCode lsp frege client",
 	"author": "Thibault Gagnaux",
 	"license": "MIT",
-	"version": "1.1.0-alpha",
+	"version": "2.1.8-alpha",
 	"publisher": "ch-fhnw-thga",
 	"repository": {
 		"type": "git",
@@ -33,6 +33,13 @@
 				]
 			}
 		],
+		"grammars": [
+			{
+				"language": "frege",
+				"scopeName": "source.frege",
+				"path": "./syntaxes/frege.tmLanguage"
+			}
+		],
 		"configuration": {
 			"type": "object",
 			"title": "Example configuration",
@@ -43,7 +50,7 @@
 					"default": 100,
 					"description": "Controls the maximum number of problems produced by the server."
 				},
-				"languageServerExample.trace.server": {
+				"frege-lsp-server.trace.server": {
 					"scope": "window",
 					"type": "string",
 					"enum": [
@@ -51,7 +58,7 @@
 						"messages",
 						"verbose"
 					],
-					"default": "off",
+					"default": "verbose",
 					"description": "Traces the communication between VS Code and the language server."
 				}
 			}
@@ -62,8 +69,7 @@
 		"clean": "rm -rf out",
 		"compile": "tsc -b",
 		"watch": "tsc -b -w",
-		"test": " npm run clean && npm run compile && mocha -r ts-node/register test/**/*.test.ts",
-		"e2eTest": "npm run clean && npm run compile && sh ./e2e.sh"
+		"test": " npm run clean && npm run compile && mocha -r ts-node/register test/**/*.test.ts"
 	},
 	"devDependencies": {
 		"@types/mocha": "^8.2.3",
