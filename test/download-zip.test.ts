@@ -4,7 +4,7 @@
  * ------------------------------------------------------------------------------------------ */
 
 import * as assert from 'assert';
-import { existsSync } from 'fs';
+import { existsSync, PathLike } from 'fs';
 import 'mocha';
 import { it } from 'mocha';
 import * as path from 'path';
@@ -12,6 +12,13 @@ import { getFregeTarGithubUrl, downloadAndExtractTarFromUrl, getFregeStartScript
 
 const fregeServerName = 'frege-lsp-server';
 const version = '2.1.8-alpha';
+
+const assertSystemPath = (actual: PathLike, expected: PathLike) => {
+	if (process.platform === 'win32') {
+		expected = `${expected}.bat`;
+	}
+	assert.strictEqual(actual, expected);
+}
 
 describe('Given frege server github release url', () => {
 
@@ -25,11 +32,8 @@ describe('Given frege server github release url', () => {
 
 describe('Given frege server name and the frege version', () => {
 	it('Then it can create the path to the frege start script dynamically', () => {
-		let expectedPath = path.normalize(`${fregeServerName}-${version}/bin/${fregeServerName}`);
-		if (process.platform === 'win32') {
-			expectedPath = `${expectedPath}.bat`;
-		}
-		assert.strictEqual((getFregeStartScriptPath(fregeServerName, version)), expectedPath);
+		const expectedStartScriptPath = path.normalize(`${fregeServerName}-${version}/bin/${fregeServerName}`);
+		assertSystemPath((getFregeStartScriptPath(fregeServerName, version)), expectedStartScriptPath);
 	});
 	it('Then it can create the github release url to the frege tar archive dynamically', () => {
 		const expectedDownloadUrl = `https://github.com/tricktron/${fregeServerName}/releases/download/v${version}/${fregeServerName}-${version}.tar`;
