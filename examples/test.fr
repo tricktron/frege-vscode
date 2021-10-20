@@ -1,0 +1,3 @@
+module Test where
+
+frobnicate a = (a, "Frege rocks")

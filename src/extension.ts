@@ -14,23 +14,28 @@ const FREGE_SERVER_NAME = 'frege-lsp-server';
 const FREGE_SERVER_VERSION = '2.1.8-alpha'
 const DEFAULT_FREGE_SERVER_DIR = '.frege'
 
-export async function activate(context: ExtensionContext) {
-	const fregeServerStartScriptPath = context.asAbsolutePath(
+const getAbsoluteFregeServerPath = async (context: ExtensionContext): Promise<string> => {
+	const absolutePath = context.asAbsolutePath(
 		path.join(DEFAULT_FREGE_SERVER_DIR, getFregeStartScriptPath(FREGE_SERVER_NAME, FREGE_SERVER_VERSION)));
-	if (!existsSync(fregeServerStartScriptPath)) {
+	if (existsSync(absolutePath)) {
+		return absolutePath;
+	} else {
 		const downloadUrl = getFregeTarGithubUrl(FREGE_SERVER_NAME, FREGE_SERVER_VERSION);
 		await downloadAndExtractTarFromUrl(downloadUrl, context.asAbsolutePath(DEFAULT_FREGE_SERVER_DIR));
+		return absolutePath;
 	}
+};
 
+export async function activate(context: ExtensionContext) {
+	const fregeServerPath = await getAbsoluteFregeServerPath(context);
 	let fregeServerOptions: ServerOptions = {
-		run: { command: "sh", args: [ fregeServerStartScriptPath ] },
+		run: { command: 'sh', args: [fregeServerPath] },
 		debug: {
-			command: "sh", args: [ fregeServerStartScriptPath ]
+			command: 'sh', args: [process.env.LOCAL_FREGE_SERVER_PATH ? process.env.LOCAL_FREGE_SERVER_PATH : fregeServerPath],
 		}
 	}
 
 	let clientOptions: LanguageClientOptions = {
-		// Register the server for plain text documents
 		documentSelector: [{ scheme: 'file', language: 'frege' }],
 		synchronize: {
 			fileEvents: workspace.createFileSystemWatcher('**/.clientrc')

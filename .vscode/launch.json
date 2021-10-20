@@ -3,65 +3,62 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"type": "java",
-			"name": "Attach to Frege LSP Server for Debugging",
-			"request": "attach",
-			"hostName": "localhost",
-			"port": 6008
-		},
-		{
 			"type": "extensionHost",
 			"request": "launch",
-			"name": "Launch Client",
+			"name": "Release Frege LSP",
 			"runtimeExecutable": "${execPath}",
 			"args": [
-				"--extensionDevelopmentPath=${workspaceRoot}"
+				"--extensionDevelopmentPath=${workspaceRoot}",
+				"${workspaceFolder}/examples"
 			],
 			"outFiles": [
 				"${workspaceRoot}/out/**/*.js"
 			],
 			"preLaunchTask": {
 				"type": "npm",
-				"script": "watch"
+				"script": "esbuild"
 			}
 		},
 		{
 			"type": "extensionHost",
 			"request": "launch",
-			"name": "Debug Client",
+			"name": "Local Frege LSP with Java Debugging",
 			"runtimeExecutable": "${execPath}",
 			"args": [
-				"--extensionDevelopmentPath=${workspaceRoot}"
+				"--extensionDevelopmentPath=${workspaceRoot}",
+				"${workspaceFolder}/examples"
 			],
 			"env": {
-				"JAVA_OPTS": "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=localhost:6008,quiet=y",
+				"LOCAL_FREGE_SERVER_PATH": "${workspaceFolder}/../frege-lsp-server/build/install/frege-lsp-server/bin/frege-lsp-server",
+				"JAVA_OPTS": "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=localhost:6008,quiet=y"
 			},
 			"outFiles": [
 				"${workspaceRoot}/out/**/*.js"
 			],
 			"preLaunchTask": {
 				"type": "npm",
-				"script": "watch"
+				"script": "esbuild"
 			}
 		},
 		{
-			"name": "Language Server E2E Test",
 			"type": "extensionHost",
 			"request": "launch",
+			"name": "Local Frege LSP",
 			"runtimeExecutable": "${execPath}",
 			"args": [
 				"--extensionDevelopmentPath=${workspaceRoot}",
-				"--extensionTestsPath=${workspaceRoot}/out/e2Test/index"
+				"${workspaceFolder}/examples"
 			],
+			"env": {
+				"LOCAL_FREGE_SERVER_PATH": "${workspaceFolder}/../frege-lsp-server/build/install/frege-lsp-server/bin/frege-lsp-server",
+			},
 			"outFiles": [
-				"${workspaceRoot}/out/e2eTest/**/*.js"
-			]
-		}
-	],
-	"compounds": [
-		{
-			"name": "Client + Server",
-			"configurations": ["Launch Client", "Attach to Frege LSP Server for Debugging"]
+				"${workspaceRoot}/out/**/*.js"
+			],
+			"preLaunchTask": {
+				"type": "npm",
+				"script": "esbuild"
+			}
 		}
 	]
 }

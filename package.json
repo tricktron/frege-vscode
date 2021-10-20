@@ -2,7 +2,7 @@
 	"name": "frege-vscode",
 	"description": "VSCode lsp frege client",
 	"author": "Thibault Gagnaux",
-	"license": "MIT",
+	"license": "SEE LICENSE IN LICENSE",
 	"version": "2.1.8-alpha",
 	"publisher": "ch-fhnw-thga",
 	"repository": {
@@ -13,13 +13,14 @@
 		"vscode": "^1.58.1"
 	},
 	"dependencies": {
+		"vsce": "^1.100.1",
 		"vscode-languageclient": "^7.0.0"
 	},
 	"activationEvents": [
 		"onLanguage:frege",
 		"onCommand:frege-vscode.restartServer"
 	],
-	"main": "./out/src/extension",
+	"main": "./dist/main",
 	"contributes": {
 		"languages": [
 			{
@@ -65,7 +66,10 @@
 		}
 	},
 	"scripts": {
-		"vscode:prepublish": "npm run compile",
+		"vscode:prepublish": "npm run esbuild-base -- --minify",
+		"esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=dist/main.js --external:vscode --format=cjs --platform=node",
+		"esbuild": "npm run esbuild-base -- --sourcemap",
+		"esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
 		"clean": "rm -rf out",
 		"compile": "tsc -b",
 		"watch": "tsc -b -w",
@@ -76,6 +80,7 @@
 		"@types/node": "^14.7.3",
 		"@types/tar-fs": "^2.0.1",
 		"@types/vscode": "^1.58.1",
+		"esbuild": "^0.13.8",
 		"mocha": "^9.0.2",
 		"tar-fs": "^2.1.1",
 		"ts-node": "^10.1.0",
