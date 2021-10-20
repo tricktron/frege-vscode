@@ -25,7 +25,8 @@ export async function activate(context: ExtensionContext) {
 	let fregeServerOptions: ServerOptions = {
 		run: { command: "sh", args: [ fregeServerStartScriptPath ] },
 		debug: {
-			command: "sh", args: [ fregeServerStartScriptPath ]
+			command: "sh", args: [fregeServerStartScriptPath],
+			options: { env: process.env['JAVA_OPTS'] = "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=localhost:6008,quiet=y" }
 		}
 	}
 

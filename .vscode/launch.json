@@ -22,7 +22,7 @@
 			],
 			"preLaunchTask": {
 				"type": "npm",
-				"script": "watch"
+				"script": "compile"
 			}
 		},
 		{
@@ -44,19 +44,6 @@
 				"script": "watch"
 			}
 		},
-		{
-			"name": "Language Server E2E Test",
-			"type": "extensionHost",
-			"request": "launch",
-			"runtimeExecutable": "${execPath}",
-			"args": [
-				"--extensionDevelopmentPath=${workspaceRoot}",
-				"--extensionTestsPath=${workspaceRoot}/out/e2Test/index"
-			],
-			"outFiles": [
-				"${workspaceRoot}/out/e2eTest/**/*.js"
-			]
-		}
 	],
 	"compounds": [
 		{
