@@ -8,7 +8,7 @@ import { existsSync, PathLike } from 'fs';
 import 'mocha';
 import { it } from 'mocha';
 import * as path from 'path';
-import { getFregeTarGithubUrl, downloadAndExtractTarFromUrl, getFregeStartScriptPath } from '../src/frege-server';
+import { getFregeTarGithubUrl, downloadAndExtractTarFromUrl, getFregeStartScriptPath } from '../src/fregeServer';
 
 const fregeServerName = 'frege-lsp-server';
 const version = '2.1.8-alpha';

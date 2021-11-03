@@ -7,7 +7,7 @@ import {
 	LanguageClientOptions,
 	ServerOptions
 } from 'vscode-languageclient/node';
-import { downloadAndExtractTarFromUrl, getFregeStartScriptPath, getFregeTarGithubUrl } from './frege-server';
+import { downloadAndExtractTarFromUrl, getFregeStartScriptPath, getFregeTarGithubUrl } from './fregeServer';
 
 let client: LanguageClient;
 const FREGE_SERVER_NAME = 'frege-lsp-server';
