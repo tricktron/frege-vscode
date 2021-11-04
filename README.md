@@ -5,8 +5,6 @@ VSCode language client for frege.
 1. Download the latest version `.vsix` file from [Releases](https://github.com/tricktron/frege-vscode/releases).
 2. Install the extension with `code --install-extension <path to downloaded extension.vsix>` or via the Command Palette (Ctrl/Cmd+Shift+P) `Install from VSIX...`.
 
-
-
 ## Features
 
 ### Diagnostics
@@ -19,8 +17,6 @@ If you save or open a frege file with errros then the compiler warnings or error
 Whenever you hover over the first word of a line (which is usually a function), you will see its type signature in a popup.
 
 ![hover](.img/frob-hover.png)
-
-
 
 ## How to Contribute
 - Add more tests and features:smiley:.
@@ -75,4 +71,8 @@ startScript path in `<yourRoot>/build/install/frege-lsp-server/bin/frege-lsp-ser
 ## How to Run the Client Unit tests
 - Run `npm test` to execute the [unit tests](test).
 
-
+## FAQ
+### How to Use Behind Corporate Proxy
+- Make sure that the `https_proxy` variable is set.
+- If you also have self-signed certificates you need to include them 
+  by setting `export NODE_EXTRA_CA_CERTS=<path to your self-signed CA certs>`.
