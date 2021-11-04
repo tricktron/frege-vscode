@@ -3,8 +3,9 @@ import * as https from 'https';
 import { extract, Extract } from 'tar-fs';
 const HttpsProxyAgent = require('https-proxy-agent');
 
-const proxyOptions: https.RequestOptions | null =
-  process.env.https_proxy === undefined ? null : { agent: new HttpsProxyAgent(process.env.https_proxy) };
+const proxyOptions: https.RequestOptions = process.env.https_proxy === undefined
+	? { agent: https.globalAgent }
+	: { agent: new HttpsProxyAgent(process.env.https_proxy) };
 
 export function getFregeStartScriptPath(fregeServerName: string, version: string): string {
 	const fregeStartScriptPath = path.join(`${fregeServerName}-${version}`, 'bin', fregeServerName);
