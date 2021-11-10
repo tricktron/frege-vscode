@@ -1,6 +1,6 @@
 import { existsSync } from 'fs';
 import * as path from 'path';
-import { workspace, ExtensionContext } from 'vscode';
+import { workspace, ExtensionContext, languages, commands, window } from 'vscode';
 
 import {
 	LanguageClient,
@@ -8,6 +8,7 @@ import {
 	ServerOptions
 } from 'vscode-languageclient/node';
 import { downloadAndExtractTarFromUrl, getFregeStartScriptPath, getFregeTarGithubUrl } from './fregeServer';
+import { FREGE_REPL_CODELENS_COMMNAD, FREGE_RUN_CODELENS_COMMNAD, MainCodeLensProvider } from './mainCodeLensProvider';
 
 let client: LanguageClient;
 const FREGE_SERVER_NAME = 'frege-lsp-server';
@@ -48,6 +49,14 @@ export async function activate(context: ExtensionContext) {
 		fregeServerOptions,
 		clientOptions
 	);
+
+	languages.registerCodeLensProvider(clientOptions.documentSelector, new MainCodeLensProvider());
+	commands.registerCommand(FREGE_RUN_CODELENS_COMMNAD, (args: any) => {
+		window.showInformationMessage(`CodeLens action clicked with args=${args}`);
+	});
+	commands.registerCommand(FREGE_REPL_CODELENS_COMMNAD, (args: any) => {
+		window.showInformationMessage(`CodeLens action clicked with args=${args}`);
+	});
 
 	// Start the client. This will also launch the server
 	client.start();

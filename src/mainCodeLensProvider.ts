@@ -4,16 +4,30 @@ import { CancellationToken, CodeLens, CodeLensProvider, Event, ProviderResult, T
 const zeroOrMoreWhiteSpaces = '\\s*';
 const aWordBoundary = '\\b';
 const mainRegex = new RegExp(`^${zeroOrMoreWhiteSpaces}main${aWordBoundary}`);
+export const FREGE_RUN_CODELENS_COMMNAD = "frege-vscode.runCodeLens";
+export const FREGE_REPL_CODELENS_COMMNAD = "frege-vscode.replCodeLens";
 
-class MainCodeLensProvider implements CodeLensProvider {
+export class MainCodeLensProvider implements CodeLensProvider {
     onDidChangeCodeLenses?: Event<void>;
     provideCodeLenses(document: TextDocument, token: CancellationToken): ProviderResult<CodeLens[]> {
-        throw new Error("Method not implemented.");
+        const mainLineNumber = findMainFunctionLineNumber(document.getText());
+        if (mainLineNumber === -1) {
+            return [];
+        } else {
+            const mainRange = document.lineAt(mainLineNumber).range;
+            return Array.of(new CodeLens(mainRange, {
+                title: "Run",
+                command: FREGE_RUN_CODELENS_COMMNAD,
+                tooltip: "Run Frege Program",
+                arguments: [document.uri.fsPath]
+            }), new CodeLens(mainRange, {
+                title: "Repl",
+                command: FREGE_REPL_CODELENS_COMMNAD,
+                tooltip: "Run Frege Repl",
+                arguments: [document.uri.fsPath]
+            }));
+        }
     }
-    resolveCodeLens?(codeLens: CodeLens, token: CancellationToken): ProviderResult<CodeLens> {
-        throw new Error("Method not implemented.");
-    }
-
 }
 
 export const findMainFunctionLineNumber = (fregeFile: string): number => {
