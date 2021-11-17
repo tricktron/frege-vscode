@@ -1,0 +1,6 @@
+module Test where
+
+frobnicate a = (a, "Frege rocks")
+
+main = do
+  putStrLn "Hello World"

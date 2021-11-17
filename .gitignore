@@ -8,3 +8,9 @@ node_modules
 .DS_Store
 dist
 *.vsix
+examples/.gradle
+examples/.settings
+examples/build
+examples/lib
+examples/.project
+examples/gradle
