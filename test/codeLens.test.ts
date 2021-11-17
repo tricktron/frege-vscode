@@ -1,6 +1,6 @@
 import { strictEqual } from 'assert';
 import { it, describe } from 'mocha';
-import { findMainFunctionLineNumber } from '../src/mainCodeLensProvider'
+import { findMainFunctionLineNumber, getFregeModuleName } from '../src/fregeCodeHelper'
 
 describe('Can find the line number of the main function', () => {
 
@@ -10,7 +10,7 @@ describe('Can find the line number of the main function', () => {
               frob a = (a, "Frege rocks")
 
               main = do
-                putStrLn frob 2`;
+                println frob 2`;
         strictEqual(findMainFunctionLineNumber(fregeFileWithMainFunction), 3);
     });
 
@@ -20,5 +20,30 @@ describe('Can find the line number of the main function', () => {
               frob a = (a, "Frege rocks")
             `;
         strictEqual(findMainFunctionLineNumber(fregeFileWithoutMainFunction), -1);
+    });
+});
+
+describe('Can extract the module name', () => {
+    it('Given a frege file', () => {
+        const fregeFile =
+            `module my.mod.Name where
+              main = do
+                println "Frege rocks"`;
+        strictEqual(getFregeModuleName(fregeFile), "my.mod.Name");
+    });
+
+    it('Given a frege file with a single module name', () => {
+        const fregeFile =
+            `module Test where
+              main = do
+                println "Frege rocks"`;
+        strictEqual(getFregeModuleName(fregeFile), "Test");
+    });
+
+    it('Given a frege file with a no module name', () => {
+        const fregeFile =
+            `main = do
+                println "Frege rocks"`;
+        strictEqual(getFregeModuleName(fregeFile), "");
     });
 });

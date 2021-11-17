@@ -8,12 +8,13 @@ import {
 	ServerOptions
 } from 'vscode-languageclient/node';
 import { downloadAndExtractTarFromUrl, getFregeStartScriptPath, getFregeTarGithubUrl } from './fregeServer';
-import { FREGE_REPL_CODELENS_COMMNAD, FREGE_RUN_CODELENS_COMMNAD, MainCodeLensProvider } from './mainCodeLensProvider';
+import { FREGE_RUN_CODELENS_COMMNAND, MainCodeLensProvider } from './mainCodeLensProvider';
 
 let client: LanguageClient;
 const FREGE_SERVER_NAME = 'frege-lsp-server';
 const FREGE_SERVER_VERSION = '2.1.8-alpha'
 const DEFAULT_FREGE_SERVER_DIR = '.frege'
+const FREGE_RUN_TERMINAL_NAME = "Frege Run";
 
 const getAbsoluteFregeServerPath = async (context: ExtensionContext): Promise<string> => {
 	const absolutePath = context.asAbsolutePath(
@@ -51,11 +52,10 @@ export async function activate(context: ExtensionContext) {
 	);
 
 	languages.registerCodeLensProvider(clientOptions.documentSelector, new MainCodeLensProvider());
-	commands.registerCommand(FREGE_RUN_CODELENS_COMMNAD, (args: any) => {
-		window.showInformationMessage(`CodeLens action clicked with args=${args}`);
-	});
-	commands.registerCommand(FREGE_REPL_CODELENS_COMMNAD, (args: any) => {
-		window.showInformationMessage(`CodeLens action clicked with args=${args}`);
+	commands.registerCommand(FREGE_RUN_CODELENS_COMMNAND, (args: any) => {
+		const terminal = getFregeTerminal();
+		terminal.show();
+		terminal.sendText(`./gradlew runFrege ${args}`);
 	});
 
 	// Start the client. This will also launch the server
@@ -67,4 +67,9 @@ export function deactivate(): Thenable<void> | undefined {
 		return undefined;
 	}
 	return client.stop();
+}
+
+const getFregeTerminal = () => {
+	const fregeTerminal = window.terminals.find(terminal => terminal.name === FREGE_RUN_TERMINAL_NAME);
+	return fregeTerminal === undefined ? window.createTerminal(FREGE_RUN_TERMINAL_NAME) : fregeTerminal;
 }

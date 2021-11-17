@@ -18,6 +18,16 @@ Whenever you hover over the first word of a line (which is usually a function), 
 
 ![hover](.img/frob-hover.png)
 
+### Run
+
+#### Prerequisities
+
+- Gradle
+- A Frege project setup with [Frege Gradle Plugin](https://github.com/tricktron/frege-gradle-plugin) >= 1.3.0.
+
+If a Frege file contains a `main` function, then a code lens with `Run` appears. If you click on it, then the `main` function is executed.
+
+
 ## How to Contribute
 - Add more tests and features:smiley:.
 
@@ -74,5 +84,5 @@ startScript path in `<yourRoot>/build/install/frege-lsp-server/bin/frege-lsp-ser
 ## FAQ
 ### How to Use Behind Corporate Proxy
 - Make sure that the `https_proxy` variable is set.
-- If you also have self-signed certificates you need to include them 
+- If you also have self-signed certificates you need to include them
   by setting `export NODE_EXTRA_CA_CERTS=<path to your self-signed CA certs>`.

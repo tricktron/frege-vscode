@@ -3,7 +3,7 @@
 	"description": "VSCode lsp frege client",
 	"author": "Thibault Gagnaux",
 	"license": "SEE LICENSE IN LICENSE",
-	"version": "2.1.0-alpha",
+	"version": "2.2.0-alpha",
 	"publisher": "ch-fhnw-thga",
 	"repository": {
 		"type": "git",
