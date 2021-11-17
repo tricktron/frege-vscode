@@ -22,8 +22,8 @@ Whenever you hover over the first word of a line (which is usually a function), 
 
 #### Prerequisities
 
-- Gradle
-- A Frege project setup with [Frege Gradle Plugin](https://github.com/tricktron/frege-gradle-plugin) >= 1.3.0.
+- Gradle and Gradle wrapper. Run `gradle wrapper` in the Frege root project dir.
+- A Frege project setup with [Frege Gradle Plugin](https://github.com/tricktron/frege-gradle-plugin) >= 1.3.0. See [examples](./examples).
 
 If a Frege file contains a `main` function, then a code lens with `Run` appears. If you click on it, then the `main` function is executed.
 
