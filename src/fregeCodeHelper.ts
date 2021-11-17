@@ -1,12 +1,12 @@
-import { EOL } from "os";
 
 const aWordBoundary = '\\b';
 const zeroOrMoreWhiteSpaces = '\\s*';
 const oneOrMoreWhiteSpaces = '\\s+'
+const endOfLine = /\r?\n/;
 
 export const findMainFunctionLineNumber = (fregeCode: string): number => {
     const mainRegex = new RegExp(`^${zeroOrMoreWhiteSpaces}main${aWordBoundary}`);
-    return fregeCode.split(EOL).findIndex((line) => mainRegex.test(line));
+    return fregeCode.split(endOfLine).findIndex((line) => mainRegex.test(line));
 }
 
 export const getFregeModuleName = (fregeCode: string): string => {
