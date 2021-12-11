@@ -13,7 +13,9 @@ describe('Can find the line number of the main function', () => {
                 println frob 2`;
         strictEqual(findMainFunctionLineNumber(fregeFileWithMainFunction), 3);
     });
+});
 
+describe('Return -1 as line number', () => {
     it('Given a frege file without a main function', () => {
         const fregeFileWithoutMainFunction =
             `module Test where
@@ -24,7 +26,7 @@ describe('Can find the line number of the main function', () => {
 });
 
 describe('Can extract the module name', () => {
-    it('Given a frege file', () => {
+    it('Given a frege file with a fully qualified module name (my.mod.Name)', () => {
         const fregeFile =
             `module my.mod.Name where
               main = do
@@ -32,15 +34,17 @@ describe('Can extract the module name', () => {
         strictEqual(getFregeModuleName(fregeFile), "my.mod.Name");
     });
 
-    it('Given a frege file with a single module name', () => {
+    it('Given a frege file with a single module name (Name)', () => {
         const fregeFile =
             `module Test where
               main = do
                 println "Frege rocks"`;
         strictEqual(getFregeModuleName(fregeFile), "Test");
     });
+});
 
-    it('Given a frege file with a no module name', () => {
+describe('Return an empty string', () => {
+    it('Given a frege file with no module name', () => {
         const fregeFile =
             `main = do
                 println "Frege rocks"`;
