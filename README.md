@@ -5,7 +5,7 @@ VSCode language client for frege.
 1. Download the latest version `.vsix` file from [Releases](https://github.com/tricktron/frege-vscode/releases).
 2. Install the extension with `code --install-extension <path to downloaded extension.vsix>` or via the Command Palette (Ctrl/Cmd+Shift+P) `Install from VSIX...`.
 
-## Features
+## Language Server Features
 
 ### Diagnostics
 If you save or open a frege file with errros then the compiler warnings or errors are displayed in the problem tab of the extension host.
@@ -18,15 +18,19 @@ Whenever you hover over the first word of a line (which is usually a function), 
 
 ![hover](.img/frob-hover.png)
 
-### Run
+## Plugin Features
 
 #### Prerequisities
 
 - Gradle and Gradle wrapper. Run `gradle wrapper` in the Frege root project dir.
-- A Frege project setup with [Frege Gradle Plugin](https://github.com/tricktron/frege-gradle-plugin) >= 1.3.0. See [examples](./examples).
+- A Frege project setup with [Frege Gradle Plugin](https://github.com/tricktron/frege-gradle-plugin) >= 1.5.0. See [examples](./examples).
 
-If a Frege file contains a `main` function, then a code lens with `Run` appears. If you click on it, then the `main` function is executed.
+### Run & Repl Code Lens
 
+If a Frege file contains a `main` function, then a code lens with `Run` and `Repl` appears.
+
+- If you click on the `Run` Code Lens, then the `main` function is executed.
+- If you click on the `Repl` Code Lens, then the [Frege Repl](https://github.com/Frege/frege-repl) with all the specified dependencies is started in a new terminal. Also, it copies the command to load the current file to your clipboard so that you only need to paste it into the Repl for a blazingly fast experience:smiley:.
 
 ## How to Contribute
 - Add more tests and features:smiley:.
