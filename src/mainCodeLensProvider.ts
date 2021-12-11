@@ -2,6 +2,7 @@ import { CancellationToken, CodeLens, CodeLensProvider, Event, ProviderResult, T
 import { findMainFunctionLineNumber, getFregeModuleName } from "./fregeCodeHelper";
 
 export const FREGE_RUN_CODELENS_COMMNAND = "frege-vscode.runCodeLens";
+export const FREGE_REPL_CODELENS_COMMNAND = "frege-vscode.replCodeLens";
 
 export class MainCodeLensProvider implements CodeLensProvider {
     onDidChangeCodeLenses?: Event<void>;
@@ -18,6 +19,11 @@ export class MainCodeLensProvider implements CodeLensProvider {
                 command: FREGE_RUN_CODELENS_COMMNAND,
                 tooltip: "Run Frege Program",
                 arguments: [`--mainModule=${moduleName}`]
+            }), new CodeLens(mainRange, {
+                title: "Repl",
+                command: FREGE_REPL_CODELENS_COMMNAND,
+                tooltip: "Start Frege Repl",
+                arguments: [document.uri.fsPath]
             }));
         }
     }

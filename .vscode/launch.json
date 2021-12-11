@@ -8,6 +8,7 @@
 			"name": "Release Frege LSP",
 			"runtimeExecutable": "${execPath}",
 			"args": [
+				"--disable-extensions",
 				"--extensionDevelopmentPath=${workspaceRoot}",
 				"${workspaceFolder}/examples"
 			],

@@ -1,6 +1,10 @@
-module Test where
+module ch.fhnw.thga.Test where
 
 frobnicate a = (a, "Frege rocks")
+
+add a b = a + b
+
+square x = x * x
 
 main = do
   putStrLn "Hello World"
