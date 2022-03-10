@@ -1,0 +1,8 @@
+module ch.fhnw.thga.FaultyFregeTest where
+
+simplyString :: String -> String
+simplyString s = s
+
+err1 = (simplyString 42) ++ "test"
+
+err2 = 42 + "42"
