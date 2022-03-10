@@ -1,8 +1,10 @@
 plugins {
-    id 'ch.fhnw.thga.frege' version '1.5.0-alpha'
+    id 'ch.fhnw.thga.frege' version '2.0.1-alpha'
 }
 
 frege {
     version = '3.25.84'
     release = '3.25alpha'
+    mainModule = 'ch.fhnw.thga.Test'
+    replModule = 'ch.fhnw.thga.Test'
 }

@@ -12,11 +12,10 @@ import { FREGE_REPL_CODELENS_COMMNAND, FREGE_RUN_CODELENS_COMMNAND, MainCodeLens
 
 let client: LanguageClient;
 const FREGE_SERVER_NAME = 'frege-lsp-server';
-const FREGE_SERVER_VERSION = '2.1.8-alpha'
+const FREGE_SERVER_VERSION = '2.1.9-alpha'
 const DEFAULT_FREGE_SERVER_DIR = '.frege'
 const FREGE_RUN_TERMINAL_NAME = 'Frege Run';
 const FREGE_REPL_TERMINAL_NAME = 'Frege Repl';
-const FREGE_REPL_MAIN_CLASS_NAME = 'frege.repl.FregeRepl';
 
 const getAbsoluteFregeServerPath = async (context: ExtensionContext): Promise<string> => {
 	const absolutePath = context.asAbsolutePath(
@@ -54,22 +53,18 @@ export async function activate(context: ExtensionContext) {
 	);
 
 	languages.registerCodeLensProvider(clientOptions.documentSelector, new MainCodeLensProvider());
-	commands.registerCommand(FREGE_RUN_CODELENS_COMMNAND, (args: any) => {
+	commands.registerCommand(FREGE_RUN_CODELENS_COMMNAND, (args: any) =>
+    {
 		const terminal = getFregeTerminal(FREGE_RUN_TERMINAL_NAME);
 		terminal.show();
-		terminal.sendText(`./gradlew runFrege ${args}`);
+		terminal.sendText(`gradle clean runFrege ${args}`);
 	});
 
-	commands.registerCommand(FREGE_REPL_CODELENS_COMMNAND, (args: any) => {
+	commands.registerCommand(FREGE_REPL_CODELENS_COMMNAND, (args: any) =>
+    {
 		const terminal = getFregeTerminal(FREGE_REPL_TERMINAL_NAME);
 		terminal.show();
-		terminal.sendText(`java -cp (./gradlew -q depsFrege) ${FREGE_REPL_MAIN_CLASS_NAME}`);
-		env.clipboard.writeText(`:l ${args}`).then(() => {
-			terminal.sendText('');
-			terminal.sendText('The following line to load the current file into the Frege REPL has been copied to your clipboard:');
-			terminal.sendText(`:l ${args}`);
-			terminal.sendText('');
-		});
+		terminal.sendText(`eval $(gradle -q clean replFrege ${args})`);
 	});
 
 	// Start the client. This will also launch the server

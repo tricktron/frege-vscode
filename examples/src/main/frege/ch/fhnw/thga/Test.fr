@@ -1,10 +1,14 @@
 module ch.fhnw.thga.Test where
 
-frobnicate a = (a, "Frege rocks")
+import ch.fhnw.thga.Dep
+
+frobnicate a = (square a, "Frege rocks")
 
 add a b = a + b
 
-square x = x * x
+sub a b = a - b
+
+mult a b = a * b
 
 main = do
-  putStrLn "Hello World"
+  println $ frobnicate 5
