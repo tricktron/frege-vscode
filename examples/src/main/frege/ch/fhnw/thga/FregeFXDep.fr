@@ -1,0 +1,8 @@
+module ch.fhnw.thga.FregeFXDep where
+
+import fregefx.JavaFxType
+import fregefx.JavaFxAll 
+import fregefx.JavaFxUtils
+
+main = do
+  println "Hello FregeFX"
