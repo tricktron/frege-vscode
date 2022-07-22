@@ -14,7 +14,6 @@
         devShell = pkgs.mkShell {
           buildInputs = with pkgs; [
             nodejs-14_x
-            ((gradleGen.override { java = openjdk11; }).gradle_latest)
           ];
         };
       });
