@@ -12,7 +12,7 @@ import { FREGE_REPL_CODELENS_COMMNAND, FREGE_RUN_CODELENS_COMMNAND, MainCodeLens
 
 let client: LanguageClient;
 const FREGE_SERVER_NAME = 'frege-lsp-server';
-const FREGE_SERVER_VERSION = '2.1.9-alpha'
+const FREGE_SERVER_VERSION = '3.1.0-alpha'
 const DEFAULT_FREGE_SERVER_DIR = '.frege'
 const FREGE_RUN_TERMINAL_NAME = 'Frege Run';
 const FREGE_REPL_TERMINAL_NAME = 'Frege Repl';

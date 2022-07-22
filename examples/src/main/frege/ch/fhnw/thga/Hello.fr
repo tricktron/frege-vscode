@@ -1,4 +1,5 @@
 module ch.fhnw.thga.Hello where
 
 main = do
-  println "Hello"
+    let aasfdsafsdf = "Hello"
+    println "Hello"
