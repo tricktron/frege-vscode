@@ -8,7 +8,5 @@ add a b = a + b
 
 sub a b = a - b
 
-mult a b = a * b
-
 main = do
-  println $ frobnicate 5
+  println $ frobnicate (minus 5 3)

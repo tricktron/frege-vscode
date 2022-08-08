@@ -1,0 +1,5 @@
+module ImportFailure where
+
+import ch.fhnw.thga.FaultyFregeTest
+
+main = println "Hello"

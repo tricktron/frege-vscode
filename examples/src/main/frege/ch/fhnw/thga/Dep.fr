@@ -1,3 +1,7 @@
 module ch.fhnw.thga.Dep where
 
 square x = x * x
+
+mult a b = a * b
+
+minus a b = a - b
