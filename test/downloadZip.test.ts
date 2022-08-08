@@ -11,7 +11,7 @@ import * as path from 'path';
 import { getFregeTarGithubUrl, downloadAndExtractTarFromUrl, getFregeStartScriptPath } from '../src/fregeServer';
 
 const fregeServerName = 'frege-lsp-server';
-const version = '4.0.0-alpha';
+const version = '4.1.0-alpha';
 
 const assertSystemPath = (actual: PathLike, expected: PathLike) => 
 {
