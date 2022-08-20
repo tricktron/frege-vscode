@@ -1,5 +1,7 @@
 module ch.fhnw.thga.Hello where
 
+import Compiler.passes.Imp()
+
 main = do
     let aasfdsafsdf = "Hello"
     println "Hello"
