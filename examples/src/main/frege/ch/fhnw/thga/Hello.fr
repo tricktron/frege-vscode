@@ -2,6 +2,10 @@ module ch.fhnw.thga.Hello where
 
 import Compiler.passes.Imp()
 
+average :: Real a => [a] -> a
+average [] = error "no average for empty lists"
+average xs = sum xs / fromIntegral (length xs)
+
+main :: IO ()
 main = do
-    let aasfdsafsdf = "Hello"
-    println "Hello"
+    println $ average [1, 2, 3]

@@ -1,0 +1,3 @@
+module ch.fhnw.thga.Demo where
+
+main = println "Hello Frege"

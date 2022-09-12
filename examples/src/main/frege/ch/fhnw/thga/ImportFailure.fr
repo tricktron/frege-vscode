@@ -1,5 +1,5 @@
-module ImportFailure where
+module ch.fhnw.thga.ImportFailure where
 
-import ch.fhnw.thga.FaultyFregeTest
+import ch.fhnw.thga.Dep
 
 main = println "Hello"
