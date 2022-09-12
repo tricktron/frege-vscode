@@ -1,6 +1,10 @@
 # Frege VSCode
 VSCode language client for frege.
 
+## Documentation
+
+Head over to the [Frege IDE docs](https://tricktron.github.io/frege-lsp-server/frege-ide/1.0/index.html) website.
+
 ## Install
 1. Download the latest version `.vsix` file from [Releases](https://github.com/tricktron/frege-vscode/releases).
 2. Install the extension with `code --install-extension <path to downloaded extension.vsix>` or via the Command Palette (Ctrl/Cmd+Shift+P) `Install from VSIX...`.
